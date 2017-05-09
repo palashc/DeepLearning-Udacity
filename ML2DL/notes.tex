@@ -1,0 +1,97 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+
+
+\begin{document}
+
+\title{Machine Learning to Deep Learning}
+\author{Palash Chauhan}
+
+\maketitle
+
+\section{Multinomial Logistic Classification}
+
+\subsection{Softmax}
+\begin{itemize}
+	\item Scores $\rightarrow$ probabilities
+	\item Multiply by 10 $\rightarrow$ close to 0/1
+	\item Divide by 10 $\rightarrow$ close to uniform 
+\end{itemize}
+
+\subsection{Cross Entropy}
+\begin{itemize}
+	\item $D(S, L) = -\sum_{i} L_i log(S_i)$
+	\item L are true one hot labels, S are output of softmax from the model
+	\item Minimize average cross entropy (loss) w.r.t parameters and biases to learn
+\end{itemize}
+
+\subsection{Numerical Stability}
+\begin{itemize}
+	\item Loss function should never get too big or too small
+	\item We want variables to aleays have 0 mean and equal variances
+	\item For images (0-255), subtract 128 and divide by 128
+	\item \textbf{Initialization}: Draw weights and biases from a gaussian with mean $\mu$ and small variance $\sigma$. 
+\end{itemize}
+
+\subsection{Measuring Performance}
+\begin{itemize}
+	\item Train ,Test, Validation
+	\item Use a validation set to prevent overfitting on test set
+	\item A change that affects 30 examples in the validation set is significant and can be trusted
+	\item Therefore, validation set should be greater than 30K examples. Accuracy figures are then significant to the first decimal place ($ > 0.1$\%)
+	\item These heuristics are true only if classes are balanced. Otherwise, get more data!
+\end{itemize}
+
+\subsection{SGD}
+\begin{itemize}
+	\item Normal GD has scaling issues
+	\item Calculate the estimate of the loss using some random batch of data and use this to get gradients
+	\item Scales well both with data and model size
+	\item \textbf{Momentum}: Keep a running average of the gradients ($ M \leftarrow 0.9M + \Delta L $) and use this instead of the current batch average.
+	\item \textbf{Learning Rate Decay}: Make the steps smaller and smaller as you train (eg. exponential decay)
+\end{itemize}
+
+\subsection{Parameter Hyperspace}
+\begin{itemize}
+	\item Many many hyperparameters to select - Initial learning rate, learning rate decay, momentum, batch size, weights initialization etc
+	\item \textbf{KEEP CALM and LOWER your LEARNING RATE}
+	\item \textbf{AdaGrad}: Modification of SGD, implicitly does momentum and learning rate decay and makes models less sensitive to hyperparameters
+\end{itemize}
+
+\section{Assignment-1}
+\subsection{Dataset}
+\begin{itemize}
+	\item notMNIST dataset of alphabets A-J in various fonts, tougher dataset than MNIST
+	\item A subset (8000 train. 1000 test) evaluated using logistic regression and other classifiers present in sklearn with their default settings. Refer to Table 1
+\end{itemize}
+%\subsection{Results}
+
+\begin{table}[]
+\centering
+
+\label{my-label}
+\begin{tabular}{|c|c|}
+\hline
+ Classifier& Accuracy  \\ \hline
+ Logistic Regression & 0.85 \\ \hline
+ 3-NN&  0.88\\ \hline
+ SVM & 0.9 \\ \hline
+ Decision Tree& 0.757 \\ \hline
+ Random Forest&  0.748\\ \hline
+Adaboost &  0.793\\ \hline
+ GaussianNB&  0.81\\ \hline
+ QDA&  0.6\\ \hline
+\end{tabular}
+\caption{Accuracies using various shallow classifiers}
+\end{table}
+
+
+\end{document}
