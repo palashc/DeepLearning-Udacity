@@ -2,14 +2,16 @@
 
 scores = [3.0, 1.0, 0.2]
 
+
 import numpy as np
 
 def softmax(x):
     """Compute softmax values for each sets of scores in x."""
     return np.exp(x) / np.sum(np.exp(x), axis=0)  
 
-
-print(softmax(scores))
+scores = np.array(scores)
+print(softmax(scores*10))
+print(softmax(scores / 10))
 
 # Plot softmax curves
 import matplotlib.pyplot as plt
