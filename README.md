@@ -1,2 +1,2 @@
 # DeepLearning-Udacity
-Udacity course on DL
+Udacity course on Deep Learning
