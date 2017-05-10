@@ -37,7 +37,7 @@ print('Validation set', valid_dataset.shape, valid_labels.shape)
 print('Test set', test_dataset.shape, test_labels.shape)
 
 
-train_subset = 5000
+train_subset = 20000
 
 graph = tf.Graph()
 with graph.as_default():
@@ -82,33 +82,3 @@ with tf.Session(graph=graph) as session:
 
 
 	print('Test accuracy: %.1f%%' % accuracy(test_prediction.eval(), test_labels))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
