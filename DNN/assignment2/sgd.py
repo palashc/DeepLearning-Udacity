@@ -60,21 +60,21 @@ with graph.as_default():
   	optimizer = tf.train.GradientDescentOptimizer(0.5).minimize(loss)
 
   	#predictions
-  	train_predictions = tf.nn.softmax(logits)
-  	valid_predictions = tf.nn.softmax(tf.matmul(tf_valid_dataset, weights) + biases)
-  	test_predictions = tf.nn.softmax(tf.matmul(tf_test_dataset, weights) + biases)
+  	train_prediction = tf.nn.softmax(logits)
+  	valid_prediction = tf.nn.softmax(tf.matmul(tf_valid_dataset, weights) + biases)
+  	test_prediction = tf.nn.softmax(tf.matmul(tf_test_dataset, weights) + biases)
 
-num_steps = 100
+num_steps = 1000
 
 def accuracy(predictions, trueLabels):
-	return (100.0 * np.sum(np.argmax(predictions, 1) == np.argmax(labels, 1)) / predictions.shape[0])
+	return (100.0 * np.sum(np.argmax(predictions, 1) == np.argmax(trueLabels, 1)) / predictions.shape[0])
 
 
 with tf.Session(graph=graph) as session:
 	tf.global_variables_initializer().run()
 	print('Initialized!!!')
 	for step in range(num_steps):
-		_, l, predictions = session.run([optimizer, loss, train_predictions])
+		_, l, predictions = session.run([optimizer, loss, train_prediction])
 		if (step % 100 == 0):
 			print('Loss at step %d: %f' % (step, l))
 			print('Training accuracy: %f' % (accuracy(predictions, train_labels[:train_subset, :])))
