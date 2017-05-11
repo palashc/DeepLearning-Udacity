@@ -163,5 +163,28 @@ BatchSize: 2048 NumSteps: 4500 TimeElapsed: 69.37 Test accuracy: 87.0\% \\
 	\item Achives 88.3\% test accuracy in around 50s
 \end{itemize}
 
+\newpage
+\section{Regularization}
+\begin{itemize}
+	\item \textbf{Early Termination}: Stop when performance does not improve on validation set
+	\item \textbf{L2 loss}: Add $l_2$ norm of the weights to penalize large weights along with a constant(hyperparamter)
+	\item \textbf{Dropout}: Randomly squash some of the activations. Use a bigger network if dropout is not working. During evaluation we don't need this randomness, we need the average of the activations. While training, squash the dropouts but also scale the rest appropriately. While evaluationg, skip this dropout and scaling.
+\end{itemize}
+
+\subsection{Assignment 3}
+128 batch size. 2000 steps. Refer to Table 1. We can see increase in test accuracy with the addition of more regularization.
+\begin{table}[]
+\centering
+\label{my-label}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+ & Without Regularization & L2-loss & dropout &Learning Rate Decay&  10K steps  \\ \hline
+ LR with SGD & 83.2\% & 85.8\% & --  & 87.7\% & 89.1\%  \\ \hline
+ 1 layer NN with SGD & 88.1\% & 89\% &  89.7\% &  90\%& 90.7\% \\ \hline
+ Overfitting NN (50 batches)& 83.8\% & 84.7\% &  85\% & 84.7\% &  -- \\ \hline
+\end{tabular}
+\caption{Effect of regularization}
+\end{table}
+
 
 \end{document}
