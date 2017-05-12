@@ -1,0 +1,36 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+
+
+\begin{document}
+
+\title{Convolutional Neural Networks}
+\author{Palash Chauhan}
+
+\maketitle
+
+\section{Points to Remember}
+\begin{itemize}
+	\item \textbf{Statistical Invariance}: Object in different areas of the image or words in different positions in the text. Need weight sharing! CNN for images and RNN/Embeddings for text.
+	\item 1x1 convolutions: Equivalent too a small NN acting on the image patch rather than just a linear classfier in the case of the classic convnet setting
+	\item Use alternating pooling and conv layers.
+	\item \textbf{Inception Module}: Average pooling followed by 1x1, 1x1, 1x1 followed by 3x3, 1x1 followed by 5x5. Concatenate all. 
+\end{itemize}
+
+\section{Assignmnet 4}
+\begin{itemize}
+	\item Batch Size: 128, num\_steps: 10K, Early Termination
+	\item conv1 (5x5, stride=2), conv2 (5x5, stride=2), fc (1024) - 94.8\%
+	\item conv1 (5x5, maxpool=2x2), conv2 (5x5, maxpool=2x2), fc (1024) - 95.1\%
+	\item $l_2$ loss, dropout, learning rate decay - 93\% (I do not know why, bad hyperparameters maybe)
+\end{itemize}
+
+\end{document}
