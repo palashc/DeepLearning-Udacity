@@ -1,0 +1,44 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+
+
+\begin{document}
+
+\title{Text and Sequences}
+\author{Palash Chauhan}
+
+\maketitle
+
+\section{Embeddings}
+
+\begin{itemize}
+	\item Similar words occur in similar contexts 
+	\item words $\rightarrow$ embeddings
+	\item Word2Vec : Predict context of a word using its vector hence learning this vector
+	\item tSNE (t-distributed stochastic neighbor embedding): nonlinear dimensionality reduction
+	\item Better to measure closeness using cosine distance rather than $l_2$ norm
+	\item Sampled softmax
+\end{itemize}
+
+\section{RNN}
+\begin{itemize}
+	\item Share parameters across time
+	\item Backprop through time
+	\item Exploding/Vanishing Gradients - gradient clipping/LSTMs
+\end{itemize}
+
+\section{LSTM}
+\begin{itemize}
+	\item Input gate, Forget gate, Output gate
+	\item DOn't use dropouts for recurrent connections, only input/output
+\end{itemize}
+
+\end{document}
